@@ -1,0 +1,1 @@
+This is a linux console to create process, manipulate them and see their info.
