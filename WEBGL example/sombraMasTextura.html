@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title> VJ1221 Informatica Grafica </title>
+      <style>
+        canvas {
+	border: 1px solid black;
+	background:black
+	}
+        </style>
+      </head>
+  
+  <body>
+  
+      <canvas id="myCanvas" style="border: none;" width="800" height="800">
+        Your browser does not support HTML5
+      </canvas>
+      <script id="myVertexShader" type="x-shader/x-vertex">
+        
+        attribute vec3 VertexPosition;
+        attribute vec3 VertexNormal;
+        attribute vec2 VertexTexcoords;
+
+        uniform   mat4 projectionMatrix;
+        uniform   mat4 modelViewMatrix;
+        uniform   mat3 normalMatrix;
+        uniform   mat4 projectionModelViewMatrixLight;
+
+
+        varying vec3 N, ec;
+        varying vec2 texCoords;
+        varying vec4 posFromLight;
+        
+        void main()  {
+          
+          N  = normalize(normalMatrix * VertexNormal);
+          vec4 ecPosition= modelViewMatrix * vec4(VertexPosition,1.0);
+          ec = vec3(ecPosition);
+          
+          gl_Position = projectionMatrix * ecPosition;
+          texCoords   = VertexTexcoords;
+          posFromLight = projectionModelViewMatrixLight * vec4(VertexPosition,1.0);
+        }
+      
+      </script>
+      
+      <script id="myFragmentShader" type="x-shader/x-fragment">
+        
+        precision highp float;
+        
+        struct LightInfo {
+          vec3 Position; // Light position in eye coords.
+          vec3 La;       // Ambient light intensity
+          vec3 Ld;       // Diffuse light intensity
+          vec3 Ls;       // Specular light intensity
+        };
+        uniform LightInfo Light;
+      
+        struct MaterialInfo {
+          vec3 Ka;       // Ambient
+          vec3 Kd;       // Diffuse
+          vec3 Ks;       // Specular
+          float alpha;   // Specular shininess factor
+        };
+        uniform MaterialInfo Material;
+      
+        uniform sampler2D myTextureShadow;
+        uniform sampler2D myTexture;
+	uniform float repetition;
+     uniform sampler2D  alphaMap;
+
+        varying vec3 N, ec;
+        varying vec2 texCoords;
+        varying vec4 posFromLight;
+
+        vec3 phong (vec3 N, vec3 L, vec3 V) {
+        
+          vec3  ambient  = Material.Ka * Light.La;
+          vec3  diffuse  = vec3(0.0);
+          vec3  specular = vec3(0.0);
+        
+          float NdotL    = dot (N,L);
+        
+          if (NdotL > 0.0) {
+            vec3  R       = reflect(-L, N);;
+            float RdotV_n = pow(max(0.0, dot(R,V)), Material.alpha);
+          
+            diffuse  = NdotL   * (Light.Ld * Material.Kd);
+            specular = RdotV_n * (Light.Ls * Material.Ks);
+          }
+        
+          return (ambient + diffuse + specular);
+        }
+      
+        // Recalculate the z value from the rgba
+        float unpackDepth(const in highp vec4 colour) {
+        
+        const highp vec4 bitShifts = vec4(
+                                          1.0,
+                                          1.0 / 255.0,
+                                          1.0 / (255.0 * 255.0),
+                                          1.0 / (255.0 * 255.0 * 255.0)
+                                          );
+                                          return dot(colour, bitShifts);
+          
+        }
+      
+      
+        void main() {
+
+          const float bias = 0.005;
+          
+          vec3 n = normalize(N);
+          vec3 L = normalize(Light.Position - ec);
+          vec3 V = normalize(-ec);
+  
+          vec3  shadowCoord= ((posFromLight.xyz/posFromLight.w) + 1.0) * 0.5;
+          
+          vec4  rgbaDepth  = texture2D(myTextureShadow, shadowCoord.st);
+          float depth      = unpackDepth(rgbaDepth);
+          vec4 alphaValue=texture2D(alphaMap, texCoords*repetition);
+	
+		  if(alphaValue.r < 0.1) discard;
+          float visibility = (depth < shadowCoord.z - bias) ? 0.6 : 1.0;
+
+ //         gl_FragColor = vec4(phong(n,L,V),1.0) * visibility; // Asi era para sombras sin texturas
+         gl_FragColor = texture2D(myTexture, texCoords*repetition) * vec4(phong(n,L,V),1.0) * 1.6 * visibility; // Asi sombras con texturas combinando P6 con P7
+        }
+      
+      </script>
+      
+      <script id="myVertexShaderFBO" type="x-shader/x-vertex">
+        precision highp float;
+
+        attribute vec3 VertexPosition;
+        uniform   mat4 projectionModelViewMatrix;
+
+        void main()  {
+          
+          gl_Position = projectionModelViewMatrix * vec4(VertexPosition,1.0);
+        
+        }
+      
+      </script>
+      
+      <script id="myFragmentShaderFBO" type="x-shader/x-fragment">
+        
+        precision highp float;
+        
+        vec4 packDepth (const in float depth) {
+          
+          const highp vec4 bias = vec4(1.0 / 255.0,
+                                       1.0 / 255.0,
+                                       1.0 / 255.0,
+                                       0.0);
+                                       
+                                       highp float r = depth;
+                                       highp float g = fract(r * 255.0);
+                                       highp float b = fract(g * 255.0);
+                                       highp float a = fract(b * 255.0);
+                                       highp vec4 colour = vec4(r, g, b, a);
+                                       
+                                       return colour - (colour.yzww * bias);
+          
+        }
+      
+        void main() {
+          
+          gl_FragColor = packDepth(gl_FragCoord.z);
+          //gl_FragColor = vec4(vec3(gl_FragCoord.z),1.0);
+
+        }
+      
+      </script>
+
+      <script src="gl-matrix-min.js"></script>
+      <script src="materiales.js"></script>
+      <script src="primitivas.js"></script>
+      <script src="sombraMasTextura.js"></script>
+      
+      </body>
+</html>
