@@ -1,0 +1,13 @@
+|------------------------|---------------------|------------------------|
+|************************|    MANUAL: exit     |************************|
+|------------------------|---------------------|------------------------|
+|	Comando para salir del programa. Antes de salir se ejecuta un 	|
+| killall para eliminar los procesos hijos restantes y evitar consumir	|
+| recursos. La sintaxis es la siguiente:				|
+|									|
+|	exit								|
+|									|
+|     ¡¡¡SE RECOMIENDA ENCARECIDAMENTE CERRAR EL PROGRAMA MEDIANTE	|
+| 			     ESTE PROCESO!!!				|
+|									|
+|-----------------------------------------------------------------------|

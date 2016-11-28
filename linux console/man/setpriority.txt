@@ -1,0 +1,12 @@
+|------------------------|---------------------|------------------------|
+|************************| MANUAL: setpriority |************************|
+|------------------------|---------------------|------------------------|
+|	Dependiendo de la política de planificación que utiliza un 	|
+| proceso, se puede cambiar la prioridad estática. Para ello ha de ser	|
+| del tipo FIFO ó RR. La sintáxis es la siguiente:			|
+|									|
+|	setpriority pid p						|
+|		pid: identificador del proceso.				|
+|		p: prioridad deseada.					|
+|									|
+|-----------------------------------------------------------------------|

@@ -1,0 +1,10 @@
+|------------------------|----------------------|------------------------|
+|************************|MANUAL: create process|************************|
+|------------------------|----------------------|------------------------|
+|	El comando createprocess sirve para crear tantos procesos como 	 |
+| el usuario desée. Su sintaxis es la siguiente:			 |
+|									 |
+|	createprocess n							 |
+|		n: numero de procesos que crear.			 |
+|									 |
+|------------------------------------------------------------------------|

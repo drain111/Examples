@@ -1,0 +1,29 @@
+|------------------------|---------------------|------------------------|
+|************************|  MANUAL: showinfo   |************************|
+|------------------------|---------------------|------------------------|
+|	EL comando showinfo muestra la información básica de los proce-	|
+| sos del programa. Su sintaxis es la siguiente:			|
+|									|
+|	showinfo pid(opcional)						|
+|									|
+|	La información que se muestra si no se indica el pid es:	|
+|	-PID: identificador PID de cada proceso.			|
+|									|
+|	-PPID: proceso padre.						|
+|									|
+|	-POLI: política de planificación que utiliza.			|
+|									|
+|	-PRIOR: prioridad del proceso. EN caso de usar una política	|
+|	tipo CFS se mostrará un guion.					|
+|									|
+|	-setweight pid w: cambia el peso del proceso.			|
+|									|
+|	-setaffinity p: cambia el hilo de ejecución del programa	|
+|	principal.							|
+|									|
+|	-man command: muestra el manual del comando especificado.	|
+|									|
+|	Si se indica el pid, se mostrará toda la información del status	|
+|	del proceso.							|
+|									|
+|-----------------------------------------------------------------------|

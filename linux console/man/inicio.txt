@@ -1,0 +1,21 @@
+|------------------------|---------------------|------------------------|
+|************************|      BIENVENIDO     |************************|
+|------------------------|---------------------|------------------------|
+|									|
+|								 	|
+|									|
+|	GESTOR DE PROCESOS V1.0						|
+|								 	|
+|								 	|
+|								 	|
+| 						Diseñado y escrito por:	|
+|						Adrián Carboneras Más	|
+|						Borja Villarino García	|
+|									|
+|				   Código bajo licencia CC-No comercial	|
+|									|
+|									|
+|	Para acceder al manual 						|
+|	introducir el comando man					|
+|									|
+|-----------------------------------------------------------------------|

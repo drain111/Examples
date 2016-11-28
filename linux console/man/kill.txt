@@ -1,0 +1,11 @@
+|------------------------|---------------------|------------------------|
+|************************|     MANUAL: kill    |************************|
+|------------------------|---------------------|------------------------|
+|	El comando kill se encarga de acabar con uno de los procesos 	|
+| hijos del programa. Si no existe indicará que no se ha encontrado. La	|
+| sintaxis del comando es la siguiente:					|
+|									|
+|	kill pid							|
+|		pid: identificador del proceso.				|
+|									|
+|-----------------------------------------------------------------------|

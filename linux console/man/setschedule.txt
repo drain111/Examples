@@ -1,0 +1,16 @@
+|------------------------|---------------------|------------------------|
+|************************| MANUAL: setschedule |************************|
+|------------------------|---------------------|------------------------|
+|	El comando setschedule cambia la política de planificación de 	|
+| un proceso. La sintaxis del comando es la siguiente:			|
+|									|
+|	setschedule pid p						|
+|		pid: identifificador del proceso objetivo.		|
+|									|
+|		p: politica de planificación que se desea utilizar. 	|
+|		Las opciones disponibles son las siguientes:		|
+|			1 = CFS						|
+|			2 = FIFO					|
+|			3 = RR						|
+|									|
+|-----------------------------------------------------------------------|

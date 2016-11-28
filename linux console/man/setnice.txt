@@ -1,0 +1,11 @@
+|------------------------|----------------------|------------------------|
+|************************|   MANUAL:  setnice   |************************|
+|------------------------|----------------------|------------------------|
+|	El comando nice sirve para cambiar el atributo nice de los  	 |
+| procesos cuyo schedule sea cfs. Su sintaxis es la siguiente:	  	 |
+|									 |
+|	setnice pid n							 |
+|		pid el pid del proceso al cual se desea fijar el nice	 |
+|		n: valor de nice deseado				 |
+|------------------------------------------------------------------------|
+

@@ -1,0 +1,11 @@
+|------------------------|---------------------|------------------------|
+|************************| MANUAL: setaffinity |************************|
+|------------------------|---------------------|------------------------|
+|	Con set affinity se puede elegir en que procesador se ejecuta  	|
+| el programa principal. La sintáxis es la siguiente:			|
+|									|
+|	setaffinity pid p						|
+|		pid: proceso deseado					|
+|		p: procesador donde se desea ejecutar el programa.	|
+|									|
+|-----------------------------------------------------------------------|

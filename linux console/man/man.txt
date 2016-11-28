@@ -1,0 +1,30 @@
+|------------------------|---------------------|------------------------|
+|************************|MANUAL: AYUDA GENERAL|************************|
+|------------------------|---------------------|------------------------|
+|	Este programa consiste en la creación de procesos y el manejo 	|
+| de estos. Para ello, hay disponibles los siguientes comandos:		|
+|									|
+|	-createprocess n: crea n procesos nuevos y los añade a los ya	|
+|	existentes.							|
+|									|
+|	-showinfo: muestra la información de los procesos creados.	|
+|									|
+|	-kill pid: acaba con el proceso especificado.			|
+|									|
+|	-killall: acaba con todos los procesos creados.			|
+|									|
+|	-setscheduler pid s: para el proceso indicado cambia su		|
+|	planificador.							|
+|									|
+|	-setpriority pid p: cambia el peso del proceso.			|
+|									|
+|	-setaffinity pid p: cambia el hilo de ejecución del programa	|
+|	deseado.							|
+|									|
+|	-setnice pid p: cambia el valor NICE de un proceso.		|
+|									|
+|	-man command: muestra el manual del comando especificado.	|
+|									|
+|	-exit: sal del programa.					|
+|									|
+|-----------------------------------------------------------------------|
